@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import AccountForm from '../../components/Account/Form/Form';
+import { useHistory } from 'react-router';
 
 const ScreensSignup = () => {
 
-  const URL = 'http://localhost:7890';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   
+  const history = useHistory();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
@@ -17,8 +18,7 @@ const ScreensSignup = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('processing submit');
-    fetch(`${URL}/api/v1/users/signup`, {
+    fetch(`${process.env.REACT_APP_URL}/api/v1/users/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,6 +34,7 @@ const ScreensSignup = () => {
     })
       .then(res => res.json())
       .then(json => console.log('fetch success: ', json))
+      .then(history.push('/'))
       .catch((err) => console.error(err));
   };
 
