@@ -1,18 +1,15 @@
 import React from 'react';
-
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Container from 'react-bootstrap/Container';
-import { BrowserRouter, Switch } from 'react-router-dom';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ScreensCampaignCreate from '../../screens/Campaign/Create/Create';
+import MainNav from '../MainNav/MainNav';
+import Home from '../../screens/Home/Home';
 
 const App = () => (
   <BrowserRouter>
-    <Container className="p-3">
-      <Jumbotron>
-        <h1 className="header">Welcome To MailBurst</h1>
-      </Jumbotron>
-    </Container>
+    <MainNav />
     <Switch>
+      <Route exact path='/createCampaign' component={ScreensCampaignCreate} />
+      <Route exact path='/' component={Home} />
     </Switch>
   </BrowserRouter>
 );
