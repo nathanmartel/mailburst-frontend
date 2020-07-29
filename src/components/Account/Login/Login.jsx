@@ -6,7 +6,8 @@ const AccountLogin = ({
   password,
   onEmailChange,
   onPasswordChange,
-  onSubmit 
+  onSubmit,
+  isLoading
 }) => (
   <Form onSubmit={onSubmit}>
     <Form.Row>
@@ -21,7 +22,7 @@ const AccountLogin = ({
       </Form.Group>
     </Form.Row>
 
-    <Button variant="primary" type="submit">Login</Button>
+    <Button variant="primary" type="submit">{ isLoading ? 'Loading...' : 'Login' }</Button>
   </Form>
 
 );

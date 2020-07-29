@@ -8,7 +8,7 @@ const ScreensLogin = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginLoading, setLoginLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState('');
   const [loginError, setLoginError] = useState('');
   
@@ -18,19 +18,19 @@ const ScreensLogin = () => {
   
   const handleSubmit = async(e) => {
     e.preventDefault();
-    setLoginLoading(true);
+    setIsLoading(true);
     setLoginError('');
     try {
       const user = await loginUser(email, password);
       console.log(user);
-      setLoginLoading(false);
+      setIsLoading(false);
       setLoginSuccess('Login successful!');
       setTimeout(() => { 
         history.push('/');
       }, 2500);
     }
     catch (error) {
-      setLoginLoading(false);
+      setIsLoading(false);
       setLoginError(error.message);
     }
   };
@@ -41,13 +41,14 @@ const ScreensLogin = () => {
     onEmailChange: handleEmailChange,
     onPasswordChange: handlePasswordChange,
     onSubmit: handleSubmit,
+    isLoading: isLoading
   };
   
   return (
     <Container className="p-3">
       <h1 className="header">Login</h1>
       <AccountLogin {...accountLoginProps} />
-      {loginLoading && <p>Logging in...</p> }
+      {isLoading && <p>Logging in...</p> }
       {loginSuccess && <p>{loginSuccess}</p> }
       {loginError && <p>{loginError}</p> }
     </Container>
