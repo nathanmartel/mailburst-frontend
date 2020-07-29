@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import AccountForm from '../../components/Account/Form/Form';
 import { useHistory } from 'react-router';
 import { signupUser } from '../../services/services';
+import { AuthContext } from '../../context/AuthContext';
 
 const ScreensSignup = () => {
 
+  const authContext = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -27,6 +29,7 @@ const ScreensSignup = () => {
     try {
       const user = await signupUser(email, password, firstName, lastName);
       console.log(user);
+      authContext.setAuthState(user);
       setIsLoading(false);
       setSignupSuccess('Signup successful!');
       setTimeout(() => { 
