@@ -9,8 +9,8 @@ const ScreensLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState('');
+  const [loginError, setLoginError] = useState('');
   
   const history = useHistory();
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -19,21 +19,20 @@ const ScreensLogin = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     setLoginLoading(true);
-    setLoginError(false);
+    setLoginError('');
     try {
       const user = await loginUser(email, password);
       console.log(user);
       setLoginLoading(false);
-      setLoginSuccess(true);
+      setLoginSuccess('Login successful!');
       setTimeout(() => { 
         history.push('/');
       }, 2500);
     }
-    catch {
+    catch (error) {
       setLoginLoading(false);
-      setLoginError(true);
+      setLoginError(error.message);
     }
-
   };
 
   const accountLoginProps = {
@@ -49,8 +48,8 @@ const ScreensLogin = () => {
       <h1 className="header">Login</h1>
       <AccountLogin {...accountLoginProps} />
       {loginLoading && <p>Logging in...</p> }
-      {loginSuccess && <p>Login successful!</p> }
-      {loginError && <p>Login failed!</p> }
+      {loginSuccess && <p>{loginSuccess}</p> }
+      {loginError && <p>{loginError}</p> }
     </Container>
   );
 };
