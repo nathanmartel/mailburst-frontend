@@ -24,7 +24,6 @@ const ScreensLogin = () => {
     setLoginError('');
     try {
       const user = await loginUser(email, password);
-      console.log(user);
       authContext.setAuthState(user);
       setIsLoading(false);
       setLoginSuccess('Login successful!');

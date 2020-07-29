@@ -28,7 +28,6 @@ const ScreensSignup = () => {
     setSignupError('');
     try {
       const user = await signupUser(email, password, firstName, lastName);
-      console.log(user);
       authContext.setAuthState(user);
       setIsLoading(false);
       setSignupSuccess('Signup successful!');

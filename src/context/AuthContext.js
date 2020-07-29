@@ -5,14 +5,16 @@ const { Provider } = AuthContext;
 
 const AuthProvider = ({ children }) => {
 
+  const user = localStorage.getItem('user');
   const [authState, setAuthState] = useState({
-    _id: null,
-    email: null,
-    firstName: null,
-    lastName: null
+    _id: user ? JSON.parse(user)._id : null,
+    email: user ? JSON.parse(user).email : null,
+    firstName: user ? JSON.parse(user).firstName : null,
+    lastName: user ? JSON.parse(user).lastName : null,
   });
 
   const setAuthInfo = ({ _id, email, firstName, lastName }) => {
+    localStorage.setItem('user', JSON.stringify(user));
     setAuthState({
       _id,
       email,
