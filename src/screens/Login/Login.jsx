@@ -2,34 +2,38 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useHistory } from 'react-router';
 import AccountLogin from '../../components/Account/Login/Login';
+import { loginUser } from '../../services/services';
 
 const ScreensLogin = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [loginError, setLoginError] = useState(false);
   
   const history = useHistory();
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_URL}/api/v1/users/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(json => console.log('fetch success: ', json))
-      .then(history.push('/'))
-      .catch((err) => console.error(err));
+    setLoginLoading(true);
+    setLoginError(false);
+    try {
+      const user = await loginUser(email, password);
+      console.log(user);
+      setLoginLoading(false);
+      setLoginSuccess(true);
+      setTimeout(() => { 
+        history.push('/');
+      }, 2500);
+    }
+    catch {
+      setLoginLoading(false);
+      setLoginError(true);
+    }
+
   };
 
   const accountLoginProps = {
@@ -44,6 +48,9 @@ const ScreensLogin = () => {
     <Container className="p-3">
       <h1 className="header">Login</h1>
       <AccountLogin {...accountLoginProps} />
+      {loginLoading && <p>Logging in...</p> }
+      {loginSuccess && <p>Login successful!</p> }
+      {loginError && <p>Login failed!</p> }
     </Container>
   );
 };
