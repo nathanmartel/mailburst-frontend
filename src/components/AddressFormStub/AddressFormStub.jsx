@@ -1,40 +1,40 @@
 import React from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Col } from 'react-bootstrap';
 
 const AddressFormStub = ({ 
-  address1,
-  address2,
+  street1,
+  street2,
   city,
   state,
   zip,
-  onAddress1Change,
-  onAddress2Change,
+  onStreet1Change,
+  onStreet2Change,
   onCityChange,
   onStateChange,
   onZipChange,
 }) => (
   <>
-    <Form.Group controlId="formGridAddress1">
+    <Form.Group controlId="formGridStreet1">
       <Form.Label>Address</Form.Label>
-      <Form.Control placeholder="1234 Main St" />
+      <Form.Control placeholder="1234 Main St" value={street1} onChange={onStreet1Change}/>
     </Form.Group>
 
-    <Form.Group controlId="formGridAddress2">
+    <Form.Group controlId="formGridStreet2">
       <Form.Label>Address 2</Form.Label>
-      <Form.Control placeholder="Apartment, studio, or floor" />
+      <Form.Control placeholder="Apartment, studio, or floor" value={street2} onChange={onStreet2Change} />
     </Form.Group>
 
     <Form.Row>
       <Form.Group as={Col} controlId="formGridCity">
         <Form.Label>City</Form.Label>
-        <Form.Control />
+        <Form.Control value={city} onChange={onCityChange}/>
       </Form.Group>
 
       <Form.Group as={Col} controlId="formGridState">
         <Form.Label>State</Form.Label>
-        <Form.Control as="select" defaultValue="Choose...">
-          <option>Choose...</option>
-          <option value="">N/A</option>
+        <Form.Control as="select" value={state} onChange={onStateChange}>
+          <option value="">Choose...</option>
+          <option value="XX">N/A</option>
           <option value="AK">Alaska</option>
           <option value="AL">Alabama</option>
           <option value="AR">Arkansas</option>
@@ -92,7 +92,7 @@ const AddressFormStub = ({
 
       <Form.Group as={Col} controlId="formGridZip">
         <Form.Label>Zip</Form.Label>
-        <Form.Control />
+        <Form.Control value={zip} onChange={onZipChange} />
       </Form.Group>
     </Form.Row>
   </>

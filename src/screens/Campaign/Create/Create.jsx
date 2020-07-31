@@ -15,8 +15,8 @@ const ScreensCampaignCreate = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [recipient, setRecipient] = useState('');
-  const [address1, setAddress1] = useState('');
-  const [address2, setAddress2] = useState('');
+  const [street1, setStreet1] = useState('');
+  const [street2, setStreet2] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
@@ -24,15 +24,16 @@ const ScreensCampaignCreate = () => {
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleRecipientChange = (e) => setRecipient(e.target.value);
-  const handleAddress1Change = (e) => setAddress1(e.target.value);
-  const handleAddress2Change = (e) => setAddress2(e.target.value);
+  const handleStreet1Change = (e) => setStreet1(e.target.value);
+  const handleStreet2Change = (e) => setStreet2(e.target.value);
   const handleCityChange = (e) => setCity(e.target.value);
   const handleStateChange = (e) => setState(e.target.value);
   const handleZipChange = (e) => setZip(e.target.value);
 
-  const handleSubmit = async(e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
+    console.log('submitting: ', campaignInfo);
     setCreateError('');
     try {
       const campaign = await createCampaign(campaignInfo);
@@ -44,15 +45,15 @@ const ScreensCampaignCreate = () => {
       setIsLoading(false);
       setCreateError(error.message);
     }
-  };
+  }
 
   const campaignInfo = {
-    userId: authContext._id,
+    userId: authContext.authState._id,
     title: title,
     description: description,
     recipient: recipient,
-    address1: address1,
-    address2: address2,
+    street1: street1,
+    street2: street2,
     city: city,
     state: state,
     zip: zip,
@@ -68,13 +69,13 @@ const ScreensCampaignCreate = () => {
   };
 
   const addressFormStubProps = {
-    address1: address1,
-    address2: address2,
+    street1: street1,
+    street2: street2,
     city: city,
     state: state,
     zip: zip,
-    onAddress1Change: handleAddress1Change,
-    onAddress2Change: handleAddress2Change,
+    onStreet1Change: handleStreet1Change,
+    onStreet2Change: handleStreet2Change,
     onCityChange: handleCityChange,
     onStateChange: handleStateChange,
     onZipChange: handleZipChange,
