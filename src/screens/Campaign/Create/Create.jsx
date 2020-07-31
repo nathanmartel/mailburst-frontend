@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import CampaignForm from '../../../components/CampaignForm/CampaignForm';
+import { createCampaign } from '../../../services/campaignServices';
+import { AuthContext } from '../../../context/AuthContext';
 
 const ScreensCampaignCreate = () => {
 
+  const authContext = useContext(AuthContext);
+  
   const [isLoading, setIsLoading] = useState(false);
   const [createSuccess, setCreateSuccess] = useState('');
   const [createError, setCreateError] = useState('');
@@ -43,6 +47,7 @@ const ScreensCampaignCreate = () => {
   };
 
   const campaignInfo = {
+    userId: authContext._id,
     title: title,
     description: description,
     recipient: recipient,
