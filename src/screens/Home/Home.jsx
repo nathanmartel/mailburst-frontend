@@ -8,6 +8,7 @@ const Home = () => (
     <Jumbotron>
       <h1 className="header">Welcome To MailBurst</h1>
       <Button href="/createCampaign" size="lg">Create a Campaign</Button>
+      <Button href="/createPostcard" size="lg">Create a Postcard</Button>
     </Jumbotron>
   </Container>
 );
