@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import { AuthContext } from '../../context/AuthContext';
-import { Form } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { createPostcard } from '../../services/postcardServices';
 
@@ -47,9 +47,10 @@ const ScreensPostcardCreate = () => {
             <Form.Group controlId="formGridFrontImageFile">
               <Form.File 
                 id="frontImageFile" 
+                name="frontImageFile" 
                 label="Upload file" 
-                // value={values.frontImage} 
-                // onChange={handleChange} 
+                value={values.frontImageFile} 
+                onChange={handleChange} 
               />
             </Form.Group>
 
@@ -57,6 +58,7 @@ const ScreensPostcardCreate = () => {
               <Form.Label>Front Image</Form.Label>
               <Form.Control 
                 type="text" 
+                name="frontImage" 
                 placeholder="Enter URL for postcard's image" 
                 value={values.frontImage} 
                 onChange={handleChange} 
@@ -67,6 +69,7 @@ const ScreensPostcardCreate = () => {
               <Form.Label>Front Message</Form.Label>
               <Form.Control 
                 type="text" 
+                name="frontMessage" 
                 placeholder="Enter message on the front" 
                 value={values.frontMessage} 
                 onChange={handleChange} 
@@ -78,6 +81,7 @@ const ScreensPostcardCreate = () => {
               <Form.Control 
                 as="textarea" 
                 rows="4" 
+                name="backMessage" 
                 value={values.backMessage} 
                 onChange={handleChange} 
               />
@@ -87,6 +91,7 @@ const ScreensPostcardCreate = () => {
               <Form.Label>Sender Name</Form.Label>
               <Form.Control 
                 type="text" 
+                name="senderName" 
                 placeholder="Enter sender's name" 
                 value={values.senderName} 
                 onChange={handleChange} 
@@ -97,11 +102,13 @@ const ScreensPostcardCreate = () => {
               <Form.Label>Sender Title</Form.Label>
               <Form.Control 
                 type="text" 
+                name="senderTitle" 
                 placeholder="Enter sender's title (optional)" 
                 value={values.senderTitle} 
                 onChange={handleChange} 
               />
             </Form.Group>
+            <Button type="submit">Submit</Button>
           </Form>
         )}
       </Formik>
