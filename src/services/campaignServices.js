@@ -1,3 +1,5 @@
+import { createPostcard } from "./postcardServices";
+
 const handleErrors = (res) => {
   if(!res.ok) {
     throw Error(res.statusText);
@@ -9,14 +11,14 @@ export const createCampaign = async({
   userId,
   title, 
   description, 
-  recipient,
-  street1,
-  street2,
-  city,
-  state,
-  zip,
-}) => {
-  const addressObj = await createAddress(street1, street2, city, state, zip);
+  recipient
+},
+  addressInfo,
+  postcardInfo
+) => {
+  const addressObj = await createAddress(addressInfo);
+  postcardInfo.isDefault = true;
+  const postcardObj = await createPostcard(postcardInfo); 
   return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns`, {
     method: 'POST',
     headers: {
@@ -28,7 +30,8 @@ export const createCampaign = async({
       title: title, 
       description: description, 
       recipient: recipient,
-      addressId: addressObj._id
+      addressId: addressObj._id,
+      defaultPostcardId: postcardObj._id
     }),
     credentials: 'include'
   })

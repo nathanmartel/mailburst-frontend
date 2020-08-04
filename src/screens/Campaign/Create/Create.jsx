@@ -49,7 +49,7 @@ const ScreensCampaignCreate = () => {
     console.log('submitting: ', campaignInfo);
     setCreateError('');
     try {
-      const campaign = await createCampaign(campaignInfo);
+      const campaign = await createCampaign(campaignInfo, addressInfo, postcardInfo);
       console.log('campaign: ', campaign);
       setIsLoading(false);
       setCreateSuccess('Campaign creation successful!');
@@ -65,11 +65,17 @@ const ScreensCampaignCreate = () => {
     title: title,
     description: description,
     recipient: recipient,
+  };
+
+  const addressInfo = {
     street1: street1,
     street2: street2,
     city: city,
     state: state,
     zip: zip,
+  };
+
+  const postcardInfo = {
     frontImage: frontImage,
     frontImageFile: frontImageFile,
     frontMessage: frontMessage,

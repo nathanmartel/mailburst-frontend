@@ -11,7 +11,8 @@ export const createPostcard = async({
   frontMessage, 
   backMessage,
   senderName,
-  senderTitle
+  senderTitle,
+  isDefault = false
 }) => {
   return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards`, {
     method: 'POST',
@@ -21,6 +22,7 @@ export const createPostcard = async({
     },
     body: JSON.stringify({
       userId: userId,
+      isDefault: isDefault,
       frontImage: frontImage, 
       frontMessage: frontMessage, 
       backMessage: backMessage,
