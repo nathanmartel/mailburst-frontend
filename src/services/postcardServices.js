@@ -5,7 +5,7 @@ const handleErrors = (res) => {
   return res;
 };
 
-export const createPostcard = async({ 
+export const createPostcard = ({ 
   userId,
   frontImage, 
   frontMessage, 
