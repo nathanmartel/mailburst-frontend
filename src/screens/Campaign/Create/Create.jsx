@@ -20,6 +20,12 @@ const ScreensCampaignCreate = () => {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
+  const [frontImage, setFrontImage] = useState('');
+  const [frontImageFile, setFrontImageFile] = useState('');
+  const [frontMessage, setFrontMessage] = useState('');
+  const [backMessage, setBackMessage] = useState('');
+  const [senderName, setSenderName] = useState('');
+  const [senderTitle, setSenderTitle] = useState('');
 
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
@@ -29,6 +35,13 @@ const ScreensCampaignCreate = () => {
   const handleCityChange = (e) => setCity(e.target.value);
   const handleStateChange = (e) => setState(e.target.value);
   const handleZipChange = (e) => setZip(e.target.value);
+  const handleFrontImageFileChange = (e) => setFrontImageFile(e.target.value);
+  const handleFrontImageChange = (e) => setFrontImage(e.target.value);
+  const handleFrontMessageChange = (e) => setFrontMessage(e.target.value);
+  const handleBackMessageChange = (e) => setBackMessage(e.target.value);
+  const handleSenderNameChange = (e) => setSenderName(e.target.value);
+  const handleSenderTitleChange = (e) => setSenderTitle(e.target.value);
+
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -57,6 +70,12 @@ const ScreensCampaignCreate = () => {
     city: city,
     state: state,
     zip: zip,
+    frontImage: frontImage,
+    frontImageFile: frontImageFile,
+    frontMessage: frontMessage,
+    backMessage: backMessage,
+    senderName: senderName,
+    senderTitle: senderTitle,
   };
 
   const campaignFormStubProps = {
@@ -81,9 +100,25 @@ const ScreensCampaignCreate = () => {
     onZipChange: handleZipChange,
   };
 
+  const postcardFormStubProps = {
+    frontImage: frontImage,
+    frontImageFile: frontImageFile,
+    frontMessage: frontMessage,
+    backMessage: backMessage,
+    senderName: senderName,
+    senderTitle: senderTitle,
+    onFrontImageFileChange: handleFrontImageFileChange,
+    onFrontImageChange: handleFrontImageChange,
+    onFrontMessageChange: handleFrontMessageChange,
+    onBackMessageChange: handleBackMessageChange,
+    onSenderNameChange: handleSenderNameChange,
+    onSenderTitleChange: handleSenderTitleChange,
+  };
+
   const campaignFormProps = {
     campaignFormStubProps: campaignFormStubProps,
     addressFormStubProps: addressFormStubProps,
+    postcardFormStubProps: postcardFormStubProps,
     onSubmit: handleSubmit
   };
 
