@@ -76,6 +76,7 @@ const ScreensCampaignCreate = () => {
   };
 
   const postcardInfo = {
+    userId: authContext.authState._id,
     frontImage: frontImage,
     frontImageFile: frontImageFile,
     frontMessage: frontMessage,
