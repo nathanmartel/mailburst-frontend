@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router';
 import { fetchCampaign } from '../../../services/campaignServices';
+import { Button } from 'react-bootstrap';
 
 const ScreensCampaignView = () => {
 
@@ -26,15 +27,22 @@ const ScreensCampaignView = () => {
       <h1 className="header">View Campaign</h1>
       <hr />
       {isLoading && <p>Fetching...</p> }
-      {campaignInfo &&
+      {campaignInfo && !isLoading &&
         <> 
           <h3>{campaignInfo?.title}</h3>
           <p>{campaignInfo?.description}</p>
           <h4>Recipient</h4>
-          <p>{campaignInfo?.recipient}</p>
-          <p>{campaignInfo?.address1}</p>
-          <p>{campaignInfo?.address2}</p>
-          <p>{campaignInfo?.city}, {campaignInfo?.state} {campaignInfo?.zip}</p>
+          <p>{campaignInfo?.recipient}<br />
+            {campaignInfo?.addressId?.street1}<br />
+            {campaignInfo?.addressId?.street2 && 
+              <>
+                {campaignInfo?.addressId?.street2}
+                <br />
+              </>
+            }
+            {campaignInfo?.addressId?.city}, {campaignInfo?.addressId?.state} {campaignInfo?.addressId?.zip}</p>
+          <hr />
+          <Button>Send a Postcard</Button>
         </>
       }
     </Container>
