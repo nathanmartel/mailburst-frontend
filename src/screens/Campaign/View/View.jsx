@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router';
 import { fetchCampaign } from '../../../services/campaignServices';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ScreensCampaignView = () => {
 
@@ -41,7 +42,9 @@ const ScreensCampaignView = () => {
             }
             {campaignInfo?.addressId?.city}, {campaignInfo?.addressId?.state} {campaignInfo?.addressId?.zip}</p>
           <hr />
-          <Button>Send a Postcard</Button>
+          <Link to={`/viewCampaign/${campaignInfo._id}/createPostcard`}>
+            <Button>Send a Postcard</Button>
+          </Link>
         </>
       }
     </Container>

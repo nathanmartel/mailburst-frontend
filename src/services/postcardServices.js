@@ -35,3 +35,8 @@ export const createPostcard = ({
     .then(res => res.json());
 };
 
+export const fetchPostcard = (id) => { 
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/${id}`)
+    .then(handleErrors)
+    .then(res => res.json());
+};

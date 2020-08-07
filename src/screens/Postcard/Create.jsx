@@ -3,38 +3,56 @@ import Container from 'react-bootstrap/Container';
 import { AuthContext } from '../../context/AuthContext';
 import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
-import { createPostcard } from '../../services/postcardServices';
+import { createPostcard, fetchPostcard } from '../../services/postcardServices';
+import { useParams } from 'react-router';
+import { useEffect } from 'react';
+import { fetchCampaign } from '../../services/campaignServices';
 
 const ScreensPostcardCreate = () => {
 
   const authContext = useContext(AuthContext);
+  const { campaignId } = useParams();
   
   const [isLoading, setIsLoading] = useState(false);
   const [createSuccess, setCreateSuccess] = useState('');
   const [createError, setCreateError] = useState('');
 
+  const [defaultPostcard, setDefaultPostcard] = useState({
+    userId: authContext.authState._id,
+    frontImageFile: '',
+    frontImage: '',
+    frontMessage: '',
+    backMessage: '',
+    senderName: '',
+    senderTitle: '',
+  });
+
+  useEffect(() => {
+    async function getPostcard() {
+      const campaign = await fetchCampaign(campaignId);
+      const response = await fetchPostcard(campaign.defaultPostcardId);
+      response.isDefault = false;
+      setDefaultPostcard(response);
+    }
+    setIsLoading(true);
+    getPostcard();
+    setIsLoading(false);
+  }, []);
+
   return (
     <Container className="p-3">
       <h1 className="header">Create a Postcard</h1>
       <Formik
-        initialValues={{
-          userId: authContext.authState._id,
-          frontImageFile: '',
-          frontImage: '',
-          frontMessage: '',
-          backMessage: '',
-          senderName: '',
-          senderTitle: '',
-        }}
+        enableReinitialize={true}
+        initialValues={defaultPostcard}
         onSubmit={async(values) => {
           setIsLoading(true);
-          alert(JSON.stringify(values, null, 2));
           setCreateError('');
           try {
-            const campaign = await createPostcard(values);
-            console.log('campaign: ', campaign);
+            const postcard = await createPostcard(values);
+            console.log('postcard: ', postcard);
             setIsLoading(false);
-            setCreateSuccess('Campaign creation successful!');
+            setCreateSuccess('Postcard creation successful!');
           }
           catch (error) {
             setIsLoading(false);
