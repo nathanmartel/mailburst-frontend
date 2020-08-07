@@ -3,10 +3,12 @@ import Container from 'react-bootstrap/Container';
 import CampaignForm from '../../../components/CampaignForm/CampaignForm';
 import { createCampaign } from '../../../services/campaignServices';
 import { AuthContext } from '../../../context/AuthContext';
+import { useHistory } from 'react-router';
 
 const ScreensCampaignCreate = () => {
 
   const authContext = useContext(AuthContext);
+  const history = useHistory();
   
   const [isLoading, setIsLoading] = useState(false);
   const [createSuccess, setCreateSuccess] = useState('');
@@ -46,13 +48,14 @@ const ScreensCampaignCreate = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    console.log('submitting: ', campaignInfo);
     setCreateError('');
     try {
       const campaign = await createCampaign(campaignInfo, addressInfo, postcardInfo);
-      console.log('campaign: ', campaign);
       setIsLoading(false);
       setCreateSuccess('Campaign creation successful!');
+      setTimeout(() => {
+        history.push(`/viewCampaign/${campaign._id}`);
+      }, 1500);
     }
     catch (error) {
       setIsLoading(false);
