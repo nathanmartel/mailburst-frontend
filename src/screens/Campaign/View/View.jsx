@@ -23,7 +23,6 @@ const ScreensCampaignView = () => {
 
   return (
     <Container className="p-3">
-      { console.log('campaignId', campaignId) }
       <h1 className="header">View Campaign</h1>
       <hr />
       {isLoading && <p>Fetching...</p> }

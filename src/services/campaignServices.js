@@ -45,3 +45,9 @@ export const fetchCampaign = (id) => {
     .then(handleErrors)
     .then(res => res.json());
 };
+
+export const fetchAllCampaigns = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns/`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
