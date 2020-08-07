@@ -7,6 +7,7 @@ import ScreensCampaignCreate from '../../screens/Campaign/Create/Create';
 import ScreensSignup from '../../screens/Signup/Signup';
 import ScreensLogin from '../../screens/Login/Login';
 import ScreensPostcardCreate from '../../screens/Postcard/Create';
+import ScreensCampaignView from '../../screens/Campaign/View/View';
 
 const App = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => (
       <MainNav />
       <Switch>
         <Route exact path='/createCampaign' component={ScreensCampaignCreate} />
+        <Route exact path='/viewCampaign/:campaignId' component={ScreensCampaignView} />
         <Route exact path='/createPostcard' component={ScreensPostcardCreate} />
         <Route exact path='/login' component={ScreensLogin} />
         <Route exact path='/signup' component={ScreensSignup} />

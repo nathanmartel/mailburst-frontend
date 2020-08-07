@@ -39,3 +39,9 @@ export const createCampaign = async({
     .then(handleErrors)
     .then(res => res.json());
 };
+
+export const fetchCampaign = (id) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns/${id}`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
