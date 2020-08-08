@@ -19,6 +19,7 @@ const ScreensPostcardCreate = () => {
 
   const [defaultPostcard, setDefaultPostcard] = useState({
     userId: authContext.authState._id,
+    campaignId: campaignId,
     frontImageFile: '',
     frontImage: '',
     frontMessage: '',
@@ -30,9 +31,10 @@ const ScreensPostcardCreate = () => {
   useEffect(() => {
     async function getPostcard() {
       const campaign = await fetchCampaign(campaignId);
-      const response = await fetchPostcard(campaign.defaultPostcardId);
-      response.isDefault = false;
-      setDefaultPostcard(response);
+      const defaultPostcardValues = await fetchPostcard(campaign.defaultPostcardId);
+      defaultPostcardValues.isDefault = false;
+      defaultPostcardValues.campaignId = campaignId;
+      setDefaultPostcard(defaultPostcardValues);
     }
     setIsLoading(true);
     getPostcard();

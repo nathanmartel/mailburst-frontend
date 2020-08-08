@@ -1,5 +1,5 @@
-import { createPostcard } from "./postcardServices";
-import { createAddress } from "./addressServices";
+import { createPostcard, patchPostcard } from './postcardServices';
+import { createAddress } from './addressServices';
 
 const handleErrors = (res) => {
   if(!res.ok) {
@@ -37,7 +37,8 @@ export const createCampaign = async({
     credentials: 'include'
   })
     .then(handleErrors)
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(json => patchPostcard(postcardObj._id, { campaignId: json._id }));
 };
 
 export const fetchCampaign = (id) => {

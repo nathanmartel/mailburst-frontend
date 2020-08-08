@@ -7,6 +7,7 @@ const handleErrors = (res) => {
 
 export const createPostcard = ({ 
   userId,
+  campaignId,
   frontImage, 
   frontMessage, 
   backMessage,
@@ -22,6 +23,7 @@ export const createPostcard = ({
     },
     body: JSON.stringify({
       userId: userId,
+      campaignId: campaignId,
       isDefault: isDefault,
       frontImage: frontImage, 
       frontMessage: frontMessage, 
@@ -37,6 +39,20 @@ export const createPostcard = ({
 
 export const fetchPostcard = (id) => { 
   return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/${id}`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
+
+export const patchPostcard = (id, newObj) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': true
+    },
+    body: JSON.stringify(newObj),
+    credentials: 'include'
+  })
     .then(handleErrors)
     .then(res => res.json());
 };
