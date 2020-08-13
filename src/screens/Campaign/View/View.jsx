@@ -43,7 +43,7 @@ const ScreensCampaignView = () => {
             {campaignInfo?.addressId?.city}, {campaignInfo?.addressId?.state} {campaignInfo?.addressId?.zip}</p>
           <hr />
           <Link to={`/viewCampaign/${campaignInfo._id}/createPostcard`}>
-            <Button>Send a Postcard</Button>
+            <Button>Create a Postcard</Button>
           </Link>
         </>
       }

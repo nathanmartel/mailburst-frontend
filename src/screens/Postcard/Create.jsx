@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { createPostcard, fetchPostcard } from '../../services/postcardServices';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { useEffect } from 'react';
 import { fetchCampaign } from '../../services/campaignServices';
 
@@ -12,6 +12,7 @@ const ScreensPostcardCreate = () => {
 
   const authContext = useContext(AuthContext);
   const { campaignId } = useParams();
+  const history = useHistory();
   
   const [isLoading, setIsLoading] = useState(false);
   const [createSuccess, setCreateSuccess] = useState('');
@@ -55,6 +56,9 @@ const ScreensPostcardCreate = () => {
             console.log('postcard: ', postcard);
             setIsLoading(false);
             setCreateSuccess('Postcard creation successful!');
+            setTimeout(() => {
+              history.push(`/viewPostcard/${postcard._id}`);
+            }, 1500);      
           }
           catch (error) {
             setIsLoading(false);
