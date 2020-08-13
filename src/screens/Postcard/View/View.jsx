@@ -21,7 +21,7 @@ const ScreensPostcardView = () => {
       const res = await sendPostcardToLob(postcard._id);
       setSendSuccess('Success!', res);
     }
-    catch (error) {
+    catch(error) {
       setSendFailure(error.message);
       console.log(JSON.stringify(error));
     }
