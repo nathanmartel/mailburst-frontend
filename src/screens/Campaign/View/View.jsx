@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { fetchCampaign } from '../../../services/campaignServices';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import PostcardTable from '../../../components/Campaign/PostcardTable/PostcardTable';
 
 const ScreensCampaignView = () => {
 
@@ -41,6 +42,8 @@ const ScreensCampaignView = () => {
               </>
             }
             {campaignInfo?.addressId?.city}, {campaignInfo?.addressId?.state} {campaignInfo?.addressId?.zip}</p>
+          <hr />
+          <PostcardTable postcards={campaignInfo?.postcards} />
           <hr />
           <Link to={`/viewCampaign/${campaignInfo._id}/createPostcard`}>
             <Button>Create a Postcard</Button>
