@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import { AuthContext } from '../../../context/AuthContext';
 import { Button } from 'react-bootstrap';
 import { fetchPostcard } from '../../../services/postcardServices';
+import { sendPostcardToLob } from '../../../services/lobServices';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -10,10 +11,21 @@ const ScreensPostcardView = () => {
 
   const authContext = useContext(AuthContext);
   const { postcardId } = useParams();
-  
   const [isLoading, setIsLoading] = useState(false);
-
+  const [sendSuccess, setSendSuccess] = useState('');
+  const [sendFailure, setSendFailure] = useState('');
   const [postcard, setPostcard] = useState({});
+
+  const sendPostcard = async() => {
+    try {
+      const res = await sendPostcardToLob(postcard._id);
+      setSendSuccess('Success!', res);
+    }
+    catch (error) {
+      setSendFailure(error.message);
+      console.log(JSON.stringify(error));
+    }
+  };
 
   useEffect(() => {
     async function getPostcard() {
@@ -46,11 +58,12 @@ const ScreensPostcardView = () => {
             CampaignId: {postcard?.campaignId}<br />
             isDefault: {postcard?.isDefault?.toString()}
           <hr />
-          <Link to={''}>
-            <Button>Send Card</Button>
-          </Link>
+          <Button onClick={() => sendPostcard()}>Send Card</Button>
+          {sendSuccess && <p>{sendSuccess}</p>}
+          {sendFailure && <p>{sendFailure}</p>}
         </>
-      }    </Container>
+      }    
+    </Container>
   );
 };
 
