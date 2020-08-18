@@ -7,6 +7,7 @@ const handleErrors = (res) => {
 
 export const sendPostcardToLob = (id) => {
   return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/send/${id}`, {
+    method: 'POST',
     credentials: 'include'
   })
     .then(handleErrors)
