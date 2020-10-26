@@ -11,6 +11,7 @@ import ScreensCampaignView from '../../screens/Campaign/View/View';
 import ScreensCampaignViewAll from '../../screens/Campaign/ViewAll/ViewAll';
 import ScreensPostcardView from '../../screens/Postcard/View/View';
 import ScreensDashboard from '../../screens/Dashboard/Dashboard';
+import ScreensLogout from '../../screens/Logout/Logout';
 
 const App = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => (
         <Route exact path='/viewPostcard/:postcardId' component={ScreensPostcardView} />
         <Route exact path='/dashboard' component={ScreensDashboard} />
         <Route exact path='/login' component={ScreensLogin} />
+        <Route exact path='/logout' component={ScreensLogout} />
         <Route exact path='/signup' component={ScreensSignup} />
         <Route exact path='/' component={Home} />
       </Switch>

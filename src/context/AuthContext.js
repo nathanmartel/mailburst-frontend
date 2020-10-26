@@ -1,12 +1,14 @@
 import React, { createContext, useState } from 'react';
+import { useHistory } from 'react-router';
 
 const AuthContext = createContext();
 const { Provider } = AuthContext;
 
 const AuthProvider = ({ children }) => {
 
+  const history = useHistory();
+
   const user = localStorage.getItem('user');
-  // const user = false;
   const [authState, setAuthState] = useState({
     _id: user ? JSON.parse(user)._id : null,
     email: user ? JSON.parse(user).email : null,
@@ -24,11 +26,23 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const logout = () => {
+    localStorage.removeItem('user');
+    setAuthState({
+      _id: null,
+      email: null,
+      firstName: null,
+      lastName: null
+    });
+    history.push('/');
+  };
+
   return (
     <Provider
       value={{
         authState,
-        setAuthState: authInfo => setAuthInfo(authInfo)
+        setAuthState: authInfo => setAuthInfo(authInfo),
+        logout
       }}
     >
       {children}
