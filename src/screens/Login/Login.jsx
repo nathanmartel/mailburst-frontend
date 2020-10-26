@@ -28,7 +28,7 @@ const ScreensLogin = () => {
       setIsLoading(false);
       setLoginSuccess('Login successful!');
       setTimeout(() => { 
-        history.push('/');
+        history.push('/dashboard');
       }, 2500);
     }
     catch (error) {

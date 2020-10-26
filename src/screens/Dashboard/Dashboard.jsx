@@ -11,7 +11,7 @@ const ScreensDashboard = () => {
 
   return (
     <Container className="p-3">
-      <h1 className="header">Dashboard</h1>
+      <h1 className="header">{authContext.authState.firstName}&rsquo;s Dashboard</h1>
       <ScreensCampaignViewAll userId={authContext.authState._id} />
       <Button href="/createCampaign" size="lg">Create a Campaign</Button>
       <Button href="/createPostcard" size="lg">Create a Postcard</Button>
