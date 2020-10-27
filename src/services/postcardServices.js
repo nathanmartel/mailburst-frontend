@@ -43,6 +43,18 @@ export const fetchPostcard = (id) => {
     .then(res => res.json());
 };
 
+export const fetchAllPostcards = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
+
+export const fetchUserPostcards = (userId) => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/user/${userId}`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
+
 export const patchPostcard = (id, newObj) => {
   return fetch(`${process.env.REACT_APP_API_URL}/api/v1/postcards/${id}`, {
     method: 'PATCH',
