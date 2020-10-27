@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 
-const ScreensLogout = () => {
+const AccountLogout = () => {
 
   const authContext = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,8 +15,6 @@ const ScreensLogout = () => {
       authContext.logout();
       setIsLoading(false);
       setLogoutSuccess('You have been logged out.');
-      setTimeout(() => { 
-      }, 2500);
     }
     catch (error) {
       setIsLoading(false);
@@ -34,4 +32,4 @@ const ScreensLogout = () => {
   );
 };
 
-export default ScreensLogout;
+export default AccountLogout;

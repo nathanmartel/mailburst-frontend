@@ -1,6 +1,6 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { AuthProvider } from '../../context/AuthContext';
+import React, { useContext } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import MainNav from '../MainNav/MainNav';
 import Home from '../../screens/Home/Home';
 import ScreensCampaignCreate from '../../screens/Campaign/Create/Create';
@@ -11,27 +11,41 @@ import ScreensCampaignView from '../../screens/Campaign/View/View';
 import ScreensCampaignViewAll from '../../screens/Campaign/ViewAll/ViewAll';
 import ScreensPostcardView from '../../screens/Postcard/View/View';
 import ScreensDashboard from '../../screens/Dashboard/Dashboard';
-import ScreensLogout from '../../screens/Logout/Logout';
+import AccountLogout from '../Account/Logout/Logout';
 
-const App = () => (
-  <BrowserRouter>
-    <AuthProvider>
+
+const App = () => {
+
+  const authContext = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    if (!authContext.authState._id) {
+      console.log ('redirecting');
+      return <Redirect to='/login' />;
+    }
+    return children;
+  };
+
+  return (
+    <BrowserRouter>
       <MainNav />
       <Switch>
-        <Route exact path='/createCampaign' component={ScreensCampaignCreate} />
-        <Route exact path='/viewCampaign' component={ScreensCampaignViewAll} />
-        <Route exact path='/viewCampaign/:campaignId' component={ScreensCampaignView} />
-        <Route exact path='/viewCampaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
-        <Route exact path='/createPostcard' component={ScreensPostcardCreate} />
-        <Route exact path='/viewPostcard/:postcardId' component={ScreensPostcardView} />
-        <Route exact path='/dashboard' component={ScreensDashboard} />
         <Route exact path='/login' component={ScreensLogin} />
-        <Route exact path='/logout' component={ScreensLogout} />
         <Route exact path='/signup' component={ScreensSignup} />
         <Route exact path='/' component={Home} />
+        <RequireAuth>
+          <Route exact path='/createCampaign' component={ScreensCampaignCreate} />
+          <Route exact path='/viewCampaign' component={ScreensCampaignViewAll} />
+          <Route exact path='/viewCampaign/:campaignId' component={ScreensCampaignView} />
+          <Route exact path='/viewCampaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
+          <Route exact path='/createPostcard' component={ScreensPostcardCreate} />
+          <Route exact path='/viewPostcard/:postcardId' component={ScreensPostcardView} />
+          <Route exact path='/dashboard' component={ScreensDashboard} />
+          <Route exact path='/logout' component={AccountLogout} />
+        </RequireAuth>
       </Switch>
-    </AuthProvider>
-  </BrowserRouter>
-);
+    </BrowserRouter>
+  );
+};
 
 export default App;

@@ -7,7 +7,6 @@ const { Provider } = AuthContext;
 const AuthProvider = ({ children }) => {
 
   const history = useHistory();
-
   const user = localStorage.getItem('user');
   const [authState, setAuthState] = useState({
     _id: user ? JSON.parse(user)._id : null,
