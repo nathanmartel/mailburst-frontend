@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import { fetchAllPostcards, fetchUserPostcards } from '../../../services/postcardServices';
-import PostcardEntry from '../../../components/Postcard/PostcardEntry/PostcardEntry';
+// import PostcardEntry from '../../../components/Postcard/PostcardEntry/PostcardEntry';
+import PostcardTable from '../../../components/Campaign/PostcardTable/PostcardTable';
 
 const ScreensPostcardViewAll = ({ userId }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [postcardInfo, setPostcardInfo] = useState([]);
 
-  const postcardEntries = postcardInfo.map(postcard => 
-    <PostcardEntry key={postcard._id} postcard={postcard} />);
+  // const postcardEntries = postcardInfo.map(postcard => 
+  //   <PostcardEntry key={postcard._id} postcard={postcard} />);
 
   useEffect(() => {
-    async function getAllCampaigns() {
+    async function getAllPostcards() {
       setIsLoading(true);
       let fetchedPostcards;
       if (userId) fetchedPostcards = await fetchUserPostcards(userId);
@@ -20,7 +21,7 @@ const ScreensPostcardViewAll = ({ userId }) => {
       setPostcardInfo(fetchedPostcards);
       setIsLoading(false);
     }
-    getAllCampaigns();
+    getAllPostcards();
   }, []);
 
 
@@ -32,9 +33,7 @@ const ScreensPostcardViewAll = ({ userId }) => {
       <hr />
       {isLoading && <p>Fetching...</p> }
       {postcardInfo.length > 0 && !isLoading && 
-        <ul>
-          {postcardEntries}
-        </ul>
+        <PostcardTable postcards={postcardInfo} />
       }
     </Container>
   );
