@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { useHistory } from 'react-router';
+import { HOME_URL } from 'constants/urls';
 
 const AuthContext = createContext();
 const { Provider } = AuthContext;
@@ -33,7 +34,7 @@ const AuthProvider = ({ children }) => {
       firstName: null,
       lastName: null
     });
-    history.push('/');
+    history.push(HOME_URL);
   };
 
   return (

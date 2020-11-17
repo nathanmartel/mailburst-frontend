@@ -8,7 +8,6 @@ import ScreensSignup from 'screens/Signup/Signup';
 import ScreensLogin from 'screens/Login/Login';
 import ScreensPostcardCreate from 'screens/Postcard/Create';
 import ScreensCampaignView from 'screens/Campaign/View/View';
-import ScreensCampaignViewAll from 'screens/Campaign/ViewAll/ViewAll';
 import ScreensPostcardView from 'screens/Postcard/View/View';
 import ScreensMyAccount from 'screens/MyAccount/MyAccount';
 import ScreensDashboard from 'screens/Dashboard/Dashboard';
@@ -36,12 +35,11 @@ const App = () => {
         <Route exact path='/signup' component={ScreensSignup} />
         <Route exact path='/' component={Home} />
         <RequireAuth>
-          <Route exact path='/createCampaign' component={ScreensCampaignCreate} />
-          <Route exact path='/viewCampaign' component={ScreensCampaignViewAll} />
-          <Route exact path='/viewCampaign/:campaignId' component={ScreensCampaignView} />
-          <Route exact path='/viewCampaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
-          <Route exact path='/createPostcard' component={ScreensPostcardCreate} />
-          <Route exact path='/viewPostcard/:postcardId' component={ScreensPostcardView} />
+          <Route exact path='/campaign/create' component={ScreensCampaignCreate} />
+          <Route exact path='/campaign/:campaignId' component={ScreensCampaignView} />
+          <Route exact path='/campaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
+          <Route exact path='/postcard/create' component={ScreensPostcardCreate} />
+          <Route exact path='/postcard/:postcardId' component={ScreensPostcardView} />
           <Route exact path='/account' component={ScreensMyAccount} />
           <Route exact path='/dashboard' component={ScreensDashboard} />
           <Route exact path='/logout' component={AccountLogout} />

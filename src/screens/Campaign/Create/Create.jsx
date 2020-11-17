@@ -54,7 +54,7 @@ const ScreensCampaignCreate = () => {
       setIsLoading(false);
       setCreateSuccess('Campaign creation successful!');
       setTimeout(() => {
-        history.push(`/viewCampaign/${campaign._id}`);
+        history.push(`/campaign/${campaign._id}`);
       }, 1500);
     }
     catch (error) {

@@ -55,7 +55,7 @@ const ScreensPostcardCreate = () => {
             setIsLoading(false);
             setCreateSuccess('Postcard creation successful!');
             setTimeout(() => {
-              history.push(`/viewPostcard/${postcard._id}`);
+              history.push(`/postcard/${postcard._id}`);
             }, 1500);      
           }
           catch (error) {
