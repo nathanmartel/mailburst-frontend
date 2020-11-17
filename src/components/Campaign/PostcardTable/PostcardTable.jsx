@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import PostcardTableRow from '../../../components/Campaign/PostcardTableRow/PostcardTableRow';
+import PostcardTableRow from 'components/Campaign/PostcardTableRow/PostcardTableRow';
 
 const PostcardTable = ({ postcards = [] }) => {
 
