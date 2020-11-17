@@ -11,8 +11,8 @@ const AdminTablePres = ({
   const tableHeaders = columns.map(header => 
     <th key={header.objName}>{ header.description }</th>);
 
-  const tableRows = data.map(item => 
-    <AdminTablePresRow key={item._id} item={item} columns={columns} />);
+  const tableRows = data.map((item, index) =>
+    <AdminTablePresRow key={item._id} item={item} index={index + 1} columns={columns} />);
 
   return (
     <>
@@ -23,6 +23,7 @@ const AdminTablePres = ({
           <Table striped bordered hover>
             <thead>
               <tr>
+                <th>#</th>
                 {tableHeaders}
               </tr>
             </thead>
