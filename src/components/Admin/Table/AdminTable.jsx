@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllCampaigns } from 'services/campaignServices';
 import { fetchAllPostcards } from 'services/postcardServices';
+import { fetchAllUsers } from 'services/services';
 import AdminTablePres from './AdminTablePres';
 import AdminTablePostcards from './Postcards/Postcards';
 
@@ -26,6 +27,14 @@ const AdminTable = ({ selectedTable }) => {
     { description: 'Back Message', objName: 'backMessage' }
   ];
 
+  const userColumns = [
+    { description: 'ID', objName: '_id' },
+    { description: 'Email address', objName: 'email' },
+    { description: 'First Name', objName: 'firstName' },
+    { description: 'Last Name', objName: 'lastName' },
+    { description: 'Created at', objName: 'createdAt' }
+  ];
+
 
   useEffect(() => {
     async function fetchData() {
@@ -34,6 +43,8 @@ const AdminTable = ({ selectedTable }) => {
         response = await fetchAllCampaigns();
       if (selectedTable === 'Postcards')
         response = await fetchAllPostcards();
+      if (selectedTable === 'Users')
+        response = await fetchAllUsers();
       setTableData(response);
     }
     setIsLoading(true);
@@ -49,6 +60,9 @@ const AdminTable = ({ selectedTable }) => {
       }
       {!isLoading && selectedTable === 'Postcards' &&
         <AdminTablePostcards postcards={tableData} />
+      }
+      {!isLoading && selectedTable === 'Users' &&
+        <AdminTablePres data={tableData} type={selectedTable} columns={userColumns} />
       }
     </>
   );

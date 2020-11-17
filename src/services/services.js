@@ -40,3 +40,9 @@ export const signupUser = (email, password, firstName, lastName) => {
     .then(handleErrors)
     .then(res => res.json());
 };
+
+export const fetchAllUsers = () => {
+  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/`)
+    .then(handleErrors)
+    .then(res => res.json());
+};
