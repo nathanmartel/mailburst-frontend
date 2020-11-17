@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import { fetchAllCampaigns, fetchUserCampaigns } from '../../../services/campaignServices';
-import CampaignEntry from '../../../components/Campaign/CampaignEntry/CampaignEntry';
+import { fetchAllCampaigns, fetchUserCampaigns } from 'services/campaignServices';
+import CampaignEntry from 'components/Campaign/CampaignEntry/CampaignEntry';
 
 const ScreensCampaignViewAll = ({ userId }) => {
 

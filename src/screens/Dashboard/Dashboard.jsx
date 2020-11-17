@@ -1,10 +1,8 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import ScreensCampaignViewAll from '../Campaign/ViewAll/ViewAll';
-import ScreensPostcardViewAll from '../Postcard/ViewAll/ViewAll';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext } from 'react';
+import { Container, Button } from 'react-bootstrap';
+import ScreensCampaignViewAll from 'screens/Campaign/ViewAll/ViewAll';
+import ScreensPostcardViewAll from 'screens/Postcard/ViewAll/ViewAll';
+import { AuthContext } from 'context/AuthContext';
 
 const ScreensDashboard = () => {
 

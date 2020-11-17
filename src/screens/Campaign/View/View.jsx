@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
 import { useParams } from 'react-router';
-import { fetchCampaign } from '../../../services/campaignServices';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import PostcardTable from '../../../components/Campaign/PostcardTable/PostcardTable';
+import { Button, Container } from 'react-bootstrap';
+import { fetchCampaign } from 'services/campaignServices';
+import PostcardTable from 'components/Campaign/PostcardTable/PostcardTable';
 
 const ScreensCampaignView = () => {
 

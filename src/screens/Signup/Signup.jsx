@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import Container from 'react-bootstrap/Container';
-import AccountForm from '../../components/Account/Form/Form';
 import { useHistory } from 'react-router';
-import { signupUser } from '../../services/services';
-import { AuthContext } from '../../context/AuthContext';
+import Container from 'react-bootstrap/Container';
+import AccountForm from 'components/Account/Form/Form';
+import { signupUser } from 'services/services';
+import { AuthContext } from 'context/AuthContext';
 
 const ScreensSignup = () => {
 

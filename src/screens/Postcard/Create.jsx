@@ -1,12 +1,10 @@
-import React, { useState, useContext } from 'react';
-import Container from 'react-bootstrap/Container';
-import { AuthContext } from '../../context/AuthContext';
-import { Form, Button } from 'react-bootstrap';
-import { Formik } from 'formik';
-import { createPostcard, fetchPostcard } from '../../services/postcardServices';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router';
-import { useEffect } from 'react';
-import { fetchCampaign } from '../../services/campaignServices';
+import { Button, Container, Form } from 'react-bootstrap';
+import { Formik } from 'formik';
+import { AuthContext } from 'context/AuthContext';
+import { createPostcard, fetchPostcard } from 'services/postcardServices';
+import { fetchCampaign } from 'services/campaignServices';
 
 const ScreensPostcardCreate = () => {
 

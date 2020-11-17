@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import CampaignForm from '../../../components/CampaignForm/CampaignForm';
-import { createCampaign } from '../../../services/campaignServices';
-import { AuthContext } from '../../../context/AuthContext';
+import CampaignForm from 'components/CampaignForm/CampaignForm';
+import { createCampaign } from 'services/campaignServices';
+import { AuthContext } from 'context/AuthContext';
 import { useHistory } from 'react-router';
 
 const ScreensCampaignCreate = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from 'context/AuthContext';
 
 const AccountLogout = () => {
 

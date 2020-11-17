@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import { AuthContext } from '../../../context/AuthContext';
-import { Button } from 'react-bootstrap';
-import { fetchPostcard } from '../../../services/postcardServices';
-import { sendPostcardToLob } from '../../../services/lobServices';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Button, Container } from 'react-bootstrap';
+import { AuthContext } from 'context/AuthContext';
+import { fetchPostcard } from 'services/postcardServices';
+import { sendPostcardToLob } from 'services/lobServices';
 
 const ScreensPostcardView = () => {
 

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useHistory } from 'react-router';
-import AccountLogin from '../../components/Account/Login/Login';
-import { loginUser } from '../../services/services';
-import { AuthContext } from '../../context/AuthContext';
+import AccountLogin from 'components/Account/Login/Login';
+import { loginUser } from 'services/services';
+import { AuthContext } from 'context/AuthContext';
 
 const ScreensLogin = () => {
 

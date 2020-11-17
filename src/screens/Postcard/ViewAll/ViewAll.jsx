@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
-import { fetchAllPostcards, fetchUserPostcards } from '../../../services/postcardServices';
+import { fetchAllPostcards, fetchUserPostcards } from 'services/postcardServices';
 // import PostcardEntry from '../../../components/Postcard/PostcardEntry/PostcardEntry';
-import PostcardTable from '../../../components/Campaign/PostcardTable/PostcardTable';
+import PostcardTable from 'components/Campaign/PostcardTable/PostcardTable';
 
 const ScreensPostcardViewAll = ({ userId }) => {
 

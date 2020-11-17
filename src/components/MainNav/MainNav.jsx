@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from 'context/AuthContext';
 
 const MainNav = () => {
   
