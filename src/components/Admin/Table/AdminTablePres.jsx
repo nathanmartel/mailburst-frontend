@@ -5,14 +5,15 @@ import AdminTablePresRow from './AdminTablePresRow';
 const AdminTablePres = ({ 
   data = [], 
   type = '', 
-  columns = [] 
+  columns = [],
+  actions = [] 
 }) => {
 
   const tableHeaders = columns.map(header => 
     <th key={header.objName}>{ header.description }</th>);
 
   const tableRows = data.map((item, index) =>
-    <AdminTablePresRow key={item._id} item={item} index={index + 1} columns={columns} />);
+    <AdminTablePresRow key={item._id} item={item} type={type} index={index + 1} columns={columns} actions={actions} />);
 
   return (
     <>
@@ -25,6 +26,7 @@ const AdminTablePres = ({
               <tr>
                 <th>#</th>
                 {tableHeaders}
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>

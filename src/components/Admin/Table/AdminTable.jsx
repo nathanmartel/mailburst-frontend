@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchAllCampaigns } from 'services/campaignServices';
 import { fetchAllPostcards } from 'services/postcardServices';
 import { fetchAllUsers } from 'services/services';
 import AdminTablePres from './AdminTablePres';
+import AdminTablePresRowActionsCampaigns from './AdminTablePresRowActionsCampaigns AdminTablePresRowActionsCampaigns';
 import AdminTablePostcards from './Postcards/Postcards';
 
 const AdminTable = ({ selectedTable }) => {
  
   const [tableData, setTableData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const campaignActions = [
+    { description: 'View', urlPrefix: '/campaign', urlSuffix: '' },
+    { description: 'Edit', urlPrefix: '/campaign', urlSuffix: '/edit' },
+    { description: 'Delete', urlPrefix: '/campaign', urlSuffix: '/delete' },
+  ];
+
+  const campaignActions2 = 
+    <>
+      <Link to={`campaign/{_id}`}>View</Link>
+      <Link to={`campaign/{_id}/edit`}>Edit</Link>
+    </>;
+
 
   const campaignColumns = [
     { description: 'ID', objName: '_id' },
@@ -18,6 +33,7 @@ const AdminTable = ({ selectedTable }) => {
     { description: 'Recipient', objName: 'recipient' },
     { description: 'City', objName: 'addressId.city' },
     { description: 'State', objName: 'addressId.state' },
+    // { description: 'Actions', objName: campaignActions }
   ];
 
   const postcardColumns = [

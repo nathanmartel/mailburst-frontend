@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AdminTablePresRowActionsCampaigns from './AdminTablePresRowActionsCampaigns AdminTablePresRowActionsCampaigns';
 
-const AdminTablePresRow = ({ item, index, columns }) => {
+const AdminTablePresRow = ({ item, type, index, columns, actions }) => {
 
   const tableColumns = columns.map(column => 
     <td key={column.objName}>{ item?.[column.objName] }</td>);
@@ -10,11 +11,9 @@ const AdminTablePresRow = ({ item, index, columns }) => {
     <tr>
       <td>{index}</td>
       {tableColumns}
-      <td>
-        <Link to={`/viewPostcard/${item._id}`}>
-          View
-        </Link>
-      </td>
+      { type === 'Campaigns' &&
+        <td><AdminTablePresRowActionsCampaigns _id={item._id} /></td>
+      }
     </tr>
   );
 };
