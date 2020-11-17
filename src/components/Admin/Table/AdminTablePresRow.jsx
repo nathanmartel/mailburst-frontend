@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import AdminTablePresRowActionsCampaigns from './AdminTablePresRowActionsCampaigns AdminTablePresRowActionsCampaigns';
+import AdminTablePresRowActionsCampaign from './AdminTablePresRowActionsCampaign';
+import AdminTablePresRowActionsPostcard from './AdminTablePresRowActionsPostcard';
+import AdminTablePresRowActionsUser from './AdminTablePresRowActionsUser';
 
 const AdminTablePresRow = ({ item, type, index, columns, actions }) => {
 
@@ -12,7 +13,13 @@ const AdminTablePresRow = ({ item, type, index, columns, actions }) => {
       <td>{index}</td>
       {tableColumns}
       { type === 'Campaigns' &&
-        <td><AdminTablePresRowActionsCampaigns _id={item._id} /></td>
+        <td><AdminTablePresRowActionsCampaign _id={item._id} /></td>
+      }
+      { type === 'Postcards' &&
+        <td><AdminTablePresRowActionsPostcard _id={item._id} /></td>
+      }
+      { type === 'Users' &&
+        <td><AdminTablePresRowActionsUser _id={item._id} /></td>
       }
     </tr>
   );
