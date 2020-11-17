@@ -16,7 +16,6 @@ const ScreensDashboard = () => {
       <ScreensCampaignViewAll userId={authContext.authState._id} />
       <Button href="/createCampaign" size="lg">Create a Campaign</Button>
       <ScreensPostcardViewAll userId={authContext.authState._id} />
-      <Button href="/createPostcard" size="lg">Create a Postcard</Button>
     </Container>
   );
 };

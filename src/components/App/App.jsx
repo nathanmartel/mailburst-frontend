@@ -10,6 +10,7 @@ import ScreensPostcardCreate from '../../screens/Postcard/Create';
 import ScreensCampaignView from '../../screens/Campaign/View/View';
 import ScreensCampaignViewAll from '../../screens/Campaign/ViewAll/ViewAll';
 import ScreensPostcardView from '../../screens/Postcard/View/View';
+import ScreensMyAccount from '../../screens/MyAccount/MyAccount';
 import ScreensDashboard from '../../screens/Dashboard/Dashboard';
 import AccountLogout from '../Account/Logout/Logout';
 
@@ -40,6 +41,7 @@ const App = () => {
           <Route exact path='/viewCampaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
           <Route exact path='/createPostcard' component={ScreensPostcardCreate} />
           <Route exact path='/viewPostcard/:postcardId' component={ScreensPostcardView} />
+          <Route exact path='/account' component={ScreensMyAccount} />
           <Route exact path='/dashboard' component={ScreensDashboard} />
           <Route exact path='/logout' component={AccountLogout} />
         </RequireAuth>
