@@ -13,6 +13,7 @@ import ScreensPostcardView from 'screens/Postcard/View/View';
 import ScreensMyAccount from 'screens/MyAccount/MyAccount';
 import ScreensDashboard from 'screens/Dashboard/Dashboard';
 import AccountLogout from 'components/Account/Logout/Logout';
+import ScreensAdmin from 'screens/Admin/Admin';
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
           <Route exact path='/account' component={ScreensMyAccount} />
           <Route exact path='/dashboard' component={ScreensDashboard} />
           <Route exact path='/logout' component={AccountLogout} />
+          <Route exact path='/admin' component={ScreensAdmin} />
         </RequireAuth>
       </Switch>
     </BrowserRouter>
