@@ -64,7 +64,7 @@ const ScreensCampaignCreate = () => {
   }
 
   const campaignInfo = {
-    userId: authContext.authState._id,
+    userId: authContext.authState.userInfo._id,
     title: title,
     description: description,
     recipient: recipient,
@@ -79,7 +79,7 @@ const ScreensCampaignCreate = () => {
   };
 
   const postcardInfo = {
-    userId: authContext.authState._id,
+    userId: authContext.authState.userInfo._id,
     frontImage: frontImage,
     frontImageFile: frontImageFile,
     frontMessage: frontMessage,

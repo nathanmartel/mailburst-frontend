@@ -10,10 +10,10 @@ const ScreensDashboard = () => {
 
   return (
     <Container className="p-3">
-      <h1 className="header">{authContext.authState.firstName}&rsquo;s Dashboard</h1>
-      <ScreensCampaignViewAll userId={authContext.authState._id} />
+      <h1 className="header">{authContext.authState.userInfo.firstName}&rsquo;s Dashboard</h1>
+      <ScreensCampaignViewAll userId={authContext.authState.userInfo._id} />
       <Button href="/campaign/create" size="lg">Create a Campaign</Button>
-      <ScreensPostcardViewAll userId={authContext.authState._id} />
+      <ScreensPostcardViewAll userId={authContext.authState.userInfo._id} />
     </Container>
   );
 };

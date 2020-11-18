@@ -8,7 +8,7 @@ const ScreensMyAccount = () => {
 
   return (
     <Container className="p-3">
-      <h1 className="header">{authContext.authState.firstName}&rsquo;s Account</h1>
+      <h1 className="header">{authContext.authState.userInfo.firstName}&rsquo;s Account</h1>
       <p>To come...</p>
     </Container>
   );
