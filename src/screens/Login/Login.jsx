@@ -23,8 +23,8 @@ const ScreensLogin = () => {
     setIsLoading(true);
     setLoginError('');
     try {
-      const user = await loginUser(email, password);
-      authContext.setAuthState(user);
+      const response = await loginUser(email, password);
+      authContext.setAuthState(response);
       setIsLoading(false);
       setLoginSuccess('Login successful!');
       setTimeout(() => { 

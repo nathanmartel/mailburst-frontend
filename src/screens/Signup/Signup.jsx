@@ -27,8 +27,8 @@ const ScreensSignup = () => {
     setIsLoading(true);
     setSignupError('');
     try {
-      const user = await signupUser(email, password, firstName, lastName);
-      authContext.setAuthState(user);
+      const response = await signupUser(email, password, firstName, lastName);
+      authContext.setAuthState(response);
       setIsLoading(false);
       setSignupSuccess('Signup successful!');
       setTimeout(() => { 

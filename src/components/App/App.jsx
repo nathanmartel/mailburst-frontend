@@ -18,7 +18,7 @@ import NotFound from 'components/NotFound/NotFound';
 
 const AuthRoute = ({ children }) => {
   const authContext = useContext(AuthContext);
-  if (!authContext.authState._id) {
+  if (!authContext.isAuthenticated()) {
     return <Redirect to='/login' />;
   }
   return children;

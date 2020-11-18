@@ -10,7 +10,7 @@ const MainNav = () => {
   return (
     <Navbar bg="light" expand="md">
       <Navbar.Brand href="/" className="mr-auto">MailBurst</Navbar.Brand>
-      { authContext.authState._id ? (
+      { authContext.isAuthenticated() ? (
         <>
           <Nav.Link href="/dashboard">Dashboard</Nav.Link>
           <Nav.Link href="/account">My Account</Nav.Link>
