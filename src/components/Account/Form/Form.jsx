@@ -6,13 +6,24 @@ const AccountForm = ({
   password,
   firstName,
   lastName,
+  role,
   onEmailChange,
   onPasswordChange,
   onFirstNameChange,
   onLastNameChange,
+  onRoleChange,
   onSubmit 
 }) => (
   <Form onSubmit={onSubmit}>
+    
+    {/* Refactor this 'Role' option - just testing! */}
+    <Form.Row>
+      <Form.Group as={Col} controlId="formGridRole">
+        <Form.Label>Role</Form.Label>
+        <Form.Control type="text" placeholder="Role" value={role} onChange={onRoleChange} />
+      </Form.Group>
+    </Form.Row>
+
     <Form.Row>
       <Form.Group as={Col} controlId="formGridEmail">
         <Form.Label>Email</Form.Label>

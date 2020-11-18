@@ -32,7 +32,8 @@ const AdminTable = ({ selectedTable }) => {
     { description: 'Email address', objName: 'email' },
     { description: 'First Name', objName: 'firstName' },
     { description: 'Last Name', objName: 'lastName' },
-    { description: 'Created at', objName: 'createdAt' }
+    { description: 'Created at', objName: 'createdAt' },
+    { description: 'Role', objName: 'role' }
   ];
 
 
