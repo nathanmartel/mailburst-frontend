@@ -1,6 +1,5 @@
 import React, { createContext, useState } from 'react';
 import { useHistory } from 'react-router';
-import { HOME_URL } from 'constants/urls';
 
 const AuthContext = createContext();
 const { Provider } = AuthContext;
@@ -8,33 +7,27 @@ const { Provider } = AuthContext;
 const AuthProvider = ({ children }) => {
 
   const history = useHistory();
-  const user = localStorage.getItem('user');
+  const userInfo = localStorage.getItem('userInfo');
+  const expiresAt = localStorage.getItem('expiresAt');
   const [authState, setAuthState] = useState({
-    _id: user ? JSON.parse(user)._id : null,
-    email: user ? JSON.parse(user).email : null,
-    firstName: user ? JSON.parse(user).firstName : null,
-    lastName: user ? JSON.parse(user).lastName : null,
+    userInfo: userInfo ? JSON.parse(userInfo) : null,
+    expiresAt: expiresAt ? JSON.parse(expiresAt) : null
   });
 
-  const setAuthInfo = ({ _id, email, firstName, lastName }) => {
-    localStorage.setItem('user', JSON.stringify({ _id, email, firstName, lastName }));
-    setAuthState({
-      _id,
-      email,
-      firstName,
-      lastName
-    });
+  const setAuthInfo = ({ userInfo, expiresAt }) => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    localStorage.setItem('expiresAt', JSON.stringify(expiresAt));
+    setAuthState({ userInfo, expiresAt });
   };
 
   const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('expiresAt');
     setAuthState({
-      _id: null,
-      email: null,
-      firstName: null,
-      lastName: null
+      userInfo: null,
+      expiresAt: null
     });
-    history.push(HOME_URL);
+    history.push('/');
   };
 
   return (
