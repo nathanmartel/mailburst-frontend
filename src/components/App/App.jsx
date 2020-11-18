@@ -15,17 +15,16 @@ import AccountLogout from 'components/Account/Logout/Logout';
 import ScreensAdmin from 'screens/Admin/Admin';
 
 
-const App = () => {
-
+const AuthRoute = ({ children }) => {
   const authContext = useContext(AuthContext);
+  if (!authContext.authState._id) {
+    return <Redirect to='/login' />;
+  }
+  return children;
+};
 
-  const RequireAuth = ({ children }) => {
-    if (!authContext.authState._id) {
-      console.log ('redirecting');
-      return <Redirect to='/login' />;
-    }
-    return children;
-  };
+
+const App = () => {
 
   return (
     <BrowserRouter>
@@ -34,17 +33,33 @@ const App = () => {
         <Route exact path='/login' component={ScreensLogin} />
         <Route exact path='/signup' component={ScreensSignup} />
         <Route exact path='/' component={Home} />
-        <RequireAuth>
-          <Route exact path='/campaign/create' component={ScreensCampaignCreate} />
-          <Route exact path='/campaign/:campaignId' component={ScreensCampaignView} />
-          <Route exact path='/campaign/:campaignId/createPostcard' component={ScreensPostcardCreate} />
-          <Route exact path='/postcard/create' component={ScreensPostcardCreate} />
-          <Route exact path='/postcard/:postcardId' component={ScreensPostcardView} />
-          <Route exact path='/account' component={ScreensMyAccount} />
-          <Route exact path='/dashboard' component={ScreensDashboard} />
-          <Route exact path='/logout' component={AccountLogout} />
-          <Route exact path='/admin' component={ScreensAdmin} />
-        </RequireAuth>
+        <AuthRoute exact path='/campaign/create'>
+          <Route component={ScreensCampaignCreate} />
+        </AuthRoute> 
+        <AuthRoute exact path='/campaign/:campaignId'>
+          <Route component={ScreensCampaignView} />
+        </AuthRoute>
+        <AuthRoute exact path='/campaign/:campaignId/createPostcard'>
+          <Route component={ScreensPostcardCreate} />
+        </AuthRoute>
+        <AuthRoute exact path='/postcard/create'>
+          <Route component={ScreensPostcardCreate} />
+        </AuthRoute>
+        <AuthRoute exact path='/postcard/:postcardId'>
+          <Route component={ScreensPostcardView} />
+        </AuthRoute>
+        <AuthRoute exact path='/account'>
+          <Route component={ScreensMyAccount} />
+        </AuthRoute>
+        <AuthRoute exact path='/dashboard'>
+          <Route component={ScreensDashboard} />
+        </AuthRoute> 
+        <AuthRoute exact path='/logout'>
+          <Route component={AccountLogout} />
+        </AuthRoute>
+        <AuthRoute exact path='/admin'>
+          <Route component={ScreensAdmin} />
+        </AuthRoute>
       </Switch>
     </BrowserRouter>
   );
