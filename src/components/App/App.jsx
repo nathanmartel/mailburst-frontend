@@ -14,14 +14,20 @@ import ScreensDashboard from 'screens/Dashboard/Dashboard';
 import AccountLogout from 'components/Account/Logout/Logout';
 import ScreensAdmin from 'screens/Admin/Admin';
 import NotFound from 'components/NotFound/NotFound';
+import ScreensUserEdit from 'screens/User/Edit/Edit';
 
 
-const AuthRoute = ({ children }) => {
+const AuthRoute = ({ children, ...rest }) => {
   const authContext = useContext(AuthContext);
-  if (!authContext.isAuthenticated()) {
-    return <Redirect to='/login' />;
-  }
-  return children;
+  return (
+    <Route {...rest} render={() => 
+      authContext.isAuthenticated() ? (
+        <>{children}</>
+      ) : (      
+        <Redirect to='/login' />
+      )
+    } />
+  );
 };
 
 
@@ -48,6 +54,9 @@ const App = () => {
         </AuthRoute>
         <AuthRoute exact path='/postcard/:postcardId'>
           <Route component={ScreensPostcardView} />
+        </AuthRoute>
+        <AuthRoute exact path='/user/:userId/edit'>
+          <Route component={ScreensUserEdit} />
         </AuthRoute>
         <AuthRoute exact path='/account'>
           <Route component={ScreensMyAccount} />
