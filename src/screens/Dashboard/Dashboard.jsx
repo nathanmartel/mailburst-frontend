@@ -12,7 +12,7 @@ const ScreensDashboard = () => {
     <Container className="p-3">
       <h1 className="header">{authContext.authState.firstName}&rsquo;s Dashboard</h1>
       <ScreensCampaignViewAll userId={authContext.authState._id} />
-      <Button href="/createCampaign" size="lg">Create a Campaign</Button>
+      <Button href="/campaign/create" size="lg">Create a Campaign</Button>
       <ScreensPostcardViewAll userId={authContext.authState._id} />
     </Container>
   );

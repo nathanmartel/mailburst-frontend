@@ -7,8 +7,7 @@ const Home = () => (
   <Container className="p-3">
     <Jumbotron>
       <h1 className="header">Welcome To MailBurst</h1>
-      <Button href="/createCampaign" size="lg">Create a Campaign</Button>
-      <Button href="/createPostcard" size="lg">Create a Postcard</Button>
+      <Button href="/campaign/create" size="lg">Create a Campaign</Button>
     </Jumbotron>
   </Container>
 );
