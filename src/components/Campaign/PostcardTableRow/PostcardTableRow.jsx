@@ -16,7 +16,7 @@ const PostcardTableRow = ({ postcard }) => (
       {postcard?.backMessage}
     </td>
     <td>
-      <Link to={`/viewPostcard/${postcard._id}`}>
+      <Link to={`/postcard/${postcard._id}`}>
         View
       </Link>
     </td>

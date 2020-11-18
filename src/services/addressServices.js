@@ -12,7 +12,7 @@ export const createAddress = ({
   state, 
   zip
 }) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/addresses`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/addresses`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

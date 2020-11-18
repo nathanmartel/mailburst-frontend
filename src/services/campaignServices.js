@@ -20,7 +20,7 @@ export const createCampaign = async({
   const addressObj = await createAddress(addressInfo);
   postcardInfo.isDefault = true;
   const postcardObj = await createPostcard(postcardInfo); 
-  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns`, {
+  return fetch(`${process.env.REACT_APP_API_URL}/campaigns`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,19 +42,19 @@ export const createCampaign = async({
 };
 
 export const fetchCampaign = (id) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns/${id}`)
+  return fetch(`${process.env.REACT_APP_API_URL}/campaigns/${id}`)
     .then(handleErrors)
     .then(res => res.json());
 };
 
 export const fetchAllCampaigns = () => {
-  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns/`)
+  return fetch(`${process.env.REACT_APP_API_URL}/campaigns/`)
     .then(handleErrors)
     .then(res => res.json());
 };
 
 export const fetchUserCampaigns = (userId) => {
-  return fetch(`${process.env.REACT_APP_API_URL}/api/v1/campaigns/user/${userId}`)
+  return fetch(`${process.env.REACT_APP_API_URL}/campaigns/user/${userId}`)
     .then(handleErrors)
     .then(res => res.json());
 };
