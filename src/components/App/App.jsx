@@ -13,6 +13,7 @@ import ScreensMyAccount from 'screens/MyAccount/MyAccount';
 import ScreensDashboard from 'screens/Dashboard/Dashboard';
 import AccountLogout from 'components/Account/Logout/Logout';
 import ScreensAdmin from 'screens/Admin/Admin';
+import NotFound from 'components/NotFound/NotFound';
 
 
 const AuthRoute = ({ children }) => {
@@ -60,6 +61,7 @@ const App = () => {
         <AuthRoute exact path='/admin'>
           <Route component={ScreensAdmin} />
         </AuthRoute>
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
