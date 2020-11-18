@@ -13,7 +13,13 @@ module.exports = {
   },
   devServer: {
     port: 7891,
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:7890',
+        secure: false
+      }
+    },
   },
   plugins: [
     new HtmlPlugin({ template: './src/index.html' }),
